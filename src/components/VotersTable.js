@@ -75,7 +75,7 @@ const VotersTable = ({ votes, addUserToList }) => {
 
   return (
     <div className={"voters-table-container"}>
-      {`localhost:3000/${roomId}`}
+      {`https://sprint-planner-server.herokuapp.com/${roomId}`}
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
           <TableHead>
