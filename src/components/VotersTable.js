@@ -18,8 +18,9 @@ import { connect } from "react-redux";
 import { addUserToList } from "../redux/actions/votes";
 import VotesScore from "./VotesScore";
 import { SocketContext } from "../context/socket";
+import { resetUserVotes } from "../redux/actions/user";
 
-const VotersTable = ({ votes, addUserToList }) => {
+const VotersTable = ({ votes, addUserToList, resetUserVotes }) => {
   const [visible, setVisible] = useState(false);
   const { roomId } = useParams();
   const [searchParams] = useSearchParams();
@@ -40,6 +41,7 @@ const VotersTable = ({ votes, addUserToList }) => {
       setVisible(visibility);
     });
     socket.on("reset-scores", (users) => {
+      resetUserVotes();
       addUserToList(users);
     });
   }, [visible]);
@@ -148,6 +150,7 @@ const VotersTable = ({ votes, addUserToList }) => {
 
 VotersTable.propTypes = {
   addUserToList: PropTypes.func.isRequired,
+  resetUserVotes: PropTypes.func.isRequired,
   votes: PropTypes.array.isRequired,
 };
 
@@ -155,4 +158,6 @@ const mapStateToProps = (state) => ({
   votes: state.votes,
 });
 
-export default connect(mapStateToProps, { addUserToList })(VotersTable);
+export default connect(mapStateToProps, { addUserToList, resetUserVotes })(
+  VotersTable
+);
