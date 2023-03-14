@@ -1,10 +1,10 @@
 import { countVotes } from "../services/countVotes";
-import { Paper } from "@mui/material";
+import { Box } from "@mui/material";
 
 const VotesScore = ({ votes }) => {
   const score = countVotes(votes);
 
-  return <Paper>{score} score</Paper>;
+  return <Box>{score} Points</Box>;
 };
 
 export default VotesScore;

@@ -9,11 +9,22 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import GenerateRoom from "./components/GenerateRoom";
 import AddUser from "./components/AddUser";
+import { Box, createTheme, ThemeProvider } from "@mui/material";
+
+const darkTheme = createTheme({
+  palette: {
+    mode: "dark",
+  },
+});
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <GenerateRoom />,
+    element: (
+      <div className={"generate-room-container"}>
+        <GenerateRoom />
+      </div>
+    ),
   },
   {
     path: "/:roomId",
@@ -40,9 +51,15 @@ const router = createBrowserRouter([
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <Provider store={store}>
-      <RouterProvider router={router} />
-    </Provider>
+    <ThemeProvider theme={darkTheme}>
+      <Box
+        sx={{ background: "rgb(0, 30, 60)", height: "100vh", width: "100vw" }}
+      >
+        <Provider store={store}>
+          <RouterProvider router={router} />
+        </Provider>
+      </Box>
+    </ThemeProvider>
   </React.StrictMode>
 );
 

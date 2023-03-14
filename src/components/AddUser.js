@@ -39,15 +39,22 @@ const AddUser = ({ enterRoom, addUser }) => {
   };
 
   return (
-    <div>
+    <div className={"add-user-container"}>
       <TextField
         id="filled-basic"
         value={name}
         onChange={(e) => handleChange(e.target.value)}
-        label="Filled"
+        label="User Name"
+        className={"add-user-input"}
         variant="filled"
       />
-      <Button onClick={handleSubmit}>Add User</Button>
+      <Button
+        className={"add-user-button"}
+        variant={"contained"}
+        onClick={handleSubmit}
+      >
+        Add User
+      </Button>
     </div>
   );
 };

@@ -33,6 +33,8 @@ export const countVotes = (users) => {
     returnedScore = 8;
   } else if (sum / voteCount >= 10.5 && sum / voteCount < 16.5) {
     returnedScore = 13;
+  } else if (voteCount === 0) {
+    returnedScore = "N/A";
   } else {
     returnedScore = 21;
   }

@@ -7,6 +7,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { addUserToList, getAllUsers } from "./redux/actions/votes";
 import { addUser } from "./redux/actions/user";
+import { Box } from "@mui/material";
 
 const App = ({ user, addUser, addUserToList }) => {
   let { roomId } = useParams();
@@ -33,33 +34,12 @@ const App = ({ user, addUser, addUserToList }) => {
     }
   }, [user]);
 
-  useEffect(() => {
-    //   const handleFocus = async () => {
-    //     socket.emit("new-user-add", { ...user, room: roomId });
-    //     socket.on("get-users", (users) => {
-    //       addUserToList(users);
-    //     });
-    //   };
-    //
-    //   const handleBlur = () => {
-    //     if (user) {
-    //       socket.emit("offline");
-    //     }
-    //   };
-
-    // window.addEventListener("focus", handleFocus);
-    // window.addEventListener("blur", handleBlur);
-
-    return () => {
-      // window.removeEventListener("focus", handleFocus);
-      // window.removeEventListener("blur", handleBlur);
-    };
-  }, [user]);
-
   return (
     <div className="App">
       <VotersTable />
-      <VotingRoom />
+      <Box style={{ width: "100%" }}>
+        <VotingRoom />
+      </Box>
     </div>
   );
 };

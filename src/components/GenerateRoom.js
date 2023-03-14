@@ -1,4 +1,4 @@
-import { Button } from "@mui/material";
+import { Button, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
 import { v4 as uuid } from "uuid";
 import { connect } from "react-redux";
@@ -8,11 +8,21 @@ import { enterRoom } from "../redux/actions/user";
 const GenerateRoom = ({ enterRoom }) => {
   const roomId = uuid();
   return (
-    <Button>
-      <Link onClick={() => enterRoom(roomId)} to={roomId}>
+    <div className={"instructions-container"}>
+      <Button
+        variant={"contained"}
+        component={Link}
+        to={roomId}
+        onClick={() => enterRoom(roomId)}
+        className={"instructions-container-button"}
+      >
         Generate Room
-      </Link>
-    </Button>
+      </Button>
+      <Typography className={"instructions-container-text"}>
+        To view the admin version, append <code>?admin=true</code> to the end of
+        the URL in the voting screen.
+      </Typography>
+    </div>
   );
 };
 

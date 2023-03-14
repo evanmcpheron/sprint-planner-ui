@@ -15,7 +15,7 @@ import { Check, Close } from "@mui/icons-material";
 import { useParams, useSearchParams } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { addUserToList, resetVotes } from "../redux/actions/votes";
+import { addUserToList } from "../redux/actions/votes";
 import VotesScore from "./VotesScore";
 import { SocketContext } from "../context/socket";
 
@@ -45,7 +45,6 @@ const VotersTable = ({ votes, addUserToList }) => {
   }, [visible]);
 
   const parseData = (data) => {
-    console.log(data);
     if (visible) {
       switch (data) {
         case "N/A":
@@ -75,7 +74,15 @@ const VotersTable = ({ votes, addUserToList }) => {
 
   return (
     <div className={"voters-table-container"}>
-      {`https://sprint-planner-server.herokuapp.com/${roomId}`}
+      <Button
+        variant={"contained"}
+        onClick={() => {
+          navigator.clipboard.writeText(
+            `https://sprint-planner-ui.herokuapp.com/${roomId}`
+          );
+        }}
+        id={"link-copy"}
+      >{`https://sprint-planner-ui.herokuapp.com/${roomId}`}</Button>
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
           <TableHead>
@@ -108,12 +115,26 @@ const VotersTable = ({ votes, addUserToList }) => {
                 </TableRow>
               );
             })}
+            {visible && (
+              <TableRow>
+                <TableCell />
+                <TableCell />
+                <TableCell />
+                <TableCell align="center">
+                  <VotesScore votes={votes} />
+                </TableCell>
+              </TableRow>
+            )}
           </TableBody>
         </Table>
       </TableContainer>
       {isAdmin && (
-        <div>
-          <Button variant={"contained"} onClick={handlePointVisibility}>
+        <div className={"admin-buttons-container"}>
+          <Button
+            variant={"contained"}
+            style={{ marginRight: "10px" }}
+            onClick={handlePointVisibility}
+          >
             {visible ? "Hide" : "Reveal"}
           </Button>
           <Button variant={"contained"} onClick={handleResetScores}>
@@ -121,7 +142,6 @@ const VotersTable = ({ votes, addUserToList }) => {
           </Button>
         </div>
       )}
-      {visible && <VotesScore votes={votes} />}
     </div>
   );
 };
