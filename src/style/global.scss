@@ -10,7 +10,28 @@
   padding: 0;
   margin: 0 5%;
 
+  .secondary-container {
+    width: 50%;
+  }
 }
+
+@media (max-width: 1100px) {
+ .App {
+   display: block;
+.voters-table-container {
+    width: 100%;
+    margin: 0 10px 10px  10px;
+  #link-copy {
+    margin-top: 20px;
+  }
+}
+   .secondary-container {
+     margin-top: 40px;
+     width: 100%;
+   }
+ }
+}
+
 
 .generate-room-container {
   display: flex;
