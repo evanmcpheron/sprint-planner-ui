@@ -37,7 +37,7 @@ const App = ({ user, addUser, addUserToList }) => {
   return (
     <div className="App">
       <VotersTable />
-      <Box style={{ width: "100%" }}>
+      <Box style={{ width: "50%" }}>
         <VotingRoom />
       </Box>
     </div>

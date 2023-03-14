@@ -1,6 +1,9 @@
 .voters-table-container {
   width: 50%;
   margin: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
   #link-copy {
     text-align: center;

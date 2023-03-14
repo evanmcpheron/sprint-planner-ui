@@ -53,7 +53,7 @@ root.render(
   <React.StrictMode>
     <ThemeProvider theme={darkTheme}>
       <Box
-        sx={{ background: "rgb(0, 30, 60)", height: "100vh", width: "100vw" }}
+        sx={{ background: "rgb(20, 20, 40)", height: "100vh", width: "100vw" }}
       >
         <Provider store={store}>
           <RouterProvider router={router} />
