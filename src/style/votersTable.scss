@@ -14,4 +14,30 @@
   .admin-buttons-container {
     margin-top: 20px;
   }
+
+  .epic {
+    animation: blinker 1s linear infinite;
+  }
+
+  @keyframes blinker {
+    0% {
+      color: red;
+    }
+
+    25% {
+      color: orange;
+    }
+
+    50% {
+      color: white;
+    }
+
+    75% {
+      color: orange;
+    }
+
+    100% {
+      color: red;
+    }
+  }
 }
