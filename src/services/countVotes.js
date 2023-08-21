@@ -13,14 +13,15 @@ export const countVotes = (users) => {
       sum += 1;
       voteCount += 1;
     } else if (value === "Medium") {
-      sum += 8;
+      sum += 5;
       voteCount += 1;
     } else if (value === "High") {
-      sum += 21;
+      sum += 13;
       voteCount += 1;
     }
   }
   let returnedScore;
+
   if (sum / voteCount < 1.5) {
     returnedScore = 1;
   } else if (sum / voteCount >= 1.5 && sum / voteCount < 2.5) {
@@ -31,12 +32,10 @@ export const countVotes = (users) => {
     returnedScore = 5;
   } else if (sum / voteCount >= 6.5 && sum / voteCount < 10.5) {
     returnedScore = 8;
-  } else if (sum / voteCount >= 10.5 && sum / voteCount < 16.5) {
-    returnedScore = 13;
   } else if (voteCount === 0) {
     returnedScore = "N/A";
   } else {
-    returnedScore = 21;
+    returnedScore = 13;
   }
 
   return returnedScore;

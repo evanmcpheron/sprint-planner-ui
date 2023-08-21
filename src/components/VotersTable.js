@@ -55,9 +55,10 @@ const VotersTable = ({ votes, addUserToList, resetUserVotes }) => {
           return <Typography sx={{ color: "lightgreen" }}>LOW</Typography>;
         case "Medium":
           return <Typography sx={{ color: "orange" }}>MEDIUM</Typography>;
-
         case "High":
           return <Typography sx={{ color: "red" }}>HIGH</Typography>;
+        case "Epic":
+          return <Typography sx={{ color: "red" }}>Epic</Typography>;
         default:
           return;
       }

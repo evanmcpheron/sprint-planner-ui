@@ -61,6 +61,19 @@ const VotingRow = ({ vote, updateVotes, user }) => {
           High
         </Button>
       </TableCell>
+      <TableCell align="right">
+        <Button
+          className={"vote-button "}
+          variant={vote.value === "Epic" ? "contained" : "text"}
+          size="large"
+          color={"primary"}
+          onClick={() =>
+            updateVotes({ category: vote.category, value: "Epic", id })
+          }
+        >
+          Epic
+        </Button>
+      </TableCell>
     </TableRow>
   );
 };
