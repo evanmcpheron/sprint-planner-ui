@@ -58,7 +58,7 @@ const VotersTable = ({ votes, addUserToList, resetUserVotes }) => {
         case "High":
           return <Typography sx={{ color: "red" }}>HIGH</Typography>;
         case "Epic":
-          return <Typography className="epic">Epic</Typography>;
+          return <Typography className="epic">EPIC</Typography>;
         default:
           return;
       }
@@ -97,10 +97,10 @@ const VotersTable = ({ votes, addUserToList, resetUserVotes }) => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {votes.map((user) => {
+            {votes.map((user, idx) => {
               return (
                 <TableRow
-                  key={user.name}
+                  key={idx}
                   sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                 >
                   <TableCell component="th" scope="row">
@@ -140,9 +140,12 @@ const VotersTable = ({ votes, addUserToList, resetUserVotes }) => {
           >
             {visible ? "Hide" : "Reveal"}
           </Button>
-          <Button variant={"contained"} onClick={handleResetScores}>
+          <Button variant={"contained"}
+            style={{ marginRight: "10px" }}
+            onClick={handleResetScores}>
             Reset
           </Button>
+
         </div>
       )}
     </div>
