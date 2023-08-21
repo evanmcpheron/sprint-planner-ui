@@ -1,6 +1,6 @@
 import React, { useEffect, useContext } from "react";
 import VotingRow from "./VotingRow";
-import { Paper, Table, TableBody, TableContainer } from "@mui/material";
+import { Paper, Table, TableBody, TableContainer, Button } from "@mui/material";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { addUserToList, updateVotes } from "../redux/actions/votes";
@@ -9,7 +9,7 @@ import { resetUserVotes } from "../redux/actions/user";
 
 const VotingRoom = ({ updateVotes, addUserToList, user }) => {
   const socket = useContext(SocketContext);
-
+  const id = user.id;
   useEffect(() => {
     if (user.name) {
       socket.emit("new-vote", { ...user, votes: user.votes, id: user.id });
@@ -19,7 +19,7 @@ const VotingRoom = ({ updateVotes, addUserToList, user }) => {
     }
   }, [user.votes]);
 
-  return (
+  return (<div>
     <TableContainer className={"voting-row-container"} component={Paper}>
       <Table aria-label="simple table">
         <TableBody>
@@ -30,11 +30,27 @@ const VotingRoom = ({ updateVotes, addUserToList, user }) => {
                 key={idx}
                 vote={vote}
               />
+
             );
           })}
         </TableBody>
       </Table>
     </TableContainer>
+    <Button
+      className={"vote-button"}
+      variant={"contained"}
+      sx={{ margin: '10px' }}
+      size="large"
+      color={"primary"}
+      onClick={() => {
+        updateVotes({ category: "Uncertainty", value: "EPIC", id });
+        updateVotes({ category: "Complexity", value: "EPIC", id });
+        updateVotes({ category: "Effort", value: "EPIC", id });
+      }
+      }
+    >
+      EPIC VOTE
+    </Button></div>
   );
 };
 

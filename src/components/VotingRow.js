@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 const VotingRow = ({ vote, updateVotes, user }) => {
   const id = user.id;
   return (
+
     <TableRow>
       <TableCell component="th" scope="row">
         {vote.category}
@@ -25,53 +26,53 @@ const VotingRow = ({ vote, updateVotes, user }) => {
       <TableCell align="right">
         <Button
           className={"vote-button "}
-          variant={vote.value === "Low" ? "contained" : "text"}
+          variant={vote.value === "LOW" ? "contained" : "text"}
           size="large"
           color={"primary"}
           onClick={() =>
-            updateVotes({ category: vote.category, value: "Low", id })
+            updateVotes({ category: vote.category, value: "LOW", id })
           }
         >
-          Low
+          LOW
         </Button>
       </TableCell>
       <TableCell align="right">
         <Button
           className={"vote-button "}
-          variant={vote.value === "Medium" ? "contained" : "text"}
+          variant={vote.value === "MEDIUM" ? "contained" : "text"}
           size="large"
           color={"primary"}
           onClick={() =>
-            updateVotes({ category: vote.category, value: "Medium", id })
+            updateVotes({ category: vote.category, value: "MEDIUM", id })
           }
         >
-          Medium
+          MEDIUM
         </Button>
       </TableCell>
       <TableCell align="right">
         <Button
           className={"vote-button "}
-          variant={vote.value === "High" ? "contained" : "text"}
+          variant={vote.value === "HIGH" ? "contained" : "text"}
           size="large"
           color={"primary"}
           onClick={() =>
-            updateVotes({ category: vote.category, value: "High", id })
+            updateVotes({ category: vote.category, value: "HIGH", id })
           }
         >
-          High
+          HIGH
         </Button>
       </TableCell>
       <TableCell align="right">
         <Button
           className={"vote-button "}
-          variant={vote.value === "Epic" ? "contained" : "text"}
+          variant={vote.value === "EPIC" ? "contained" : "text"}
           size="large"
           color={"primary"}
           onClick={() =>
-            updateVotes({ category: vote.category, value: "Epic", id })
+            updateVotes({ category: vote.category, value: "EPIC", id })
           }
         >
-          Epic
+          EPIC
         </Button>
       </TableCell>
     </TableRow>

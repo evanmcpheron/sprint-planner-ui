@@ -51,13 +51,13 @@ const VotersTable = ({ votes, addUserToList, resetUserVotes }) => {
       switch (data) {
         case "N/A":
           return <Typography>N/A</Typography>;
-        case "Low":
+        case "LOW":
           return <Typography sx={{ color: "lightgreen" }}>LOW</Typography>;
-        case "Medium":
+        case "MEDIUM":
           return <Typography sx={{ color: "orange" }}>MEDIUM</Typography>;
-        case "High":
+        case "HIGH":
           return <Typography sx={{ color: "red" }}>HIGH</Typography>;
-        case "Epic":
+        case "EPIC":
           return <Typography className="epic">EPIC</Typography>;
         default:
           return;
