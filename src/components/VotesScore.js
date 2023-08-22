@@ -4,7 +4,7 @@ import { Box } from "@mui/material";
 const VotesScore = ({ votes }) => {
   const score = countVotes(votes);
 
-  return <Box>{score} Points</Box>;
+  return <Box>{score > 1 ? `${score} Points` : `${score} Point`}</Box>;
 };
 
 export default VotesScore;

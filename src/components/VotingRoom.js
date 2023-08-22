@@ -50,7 +50,8 @@ const VotingRoom = ({ updateVotes, addUserToList, user }) => {
       }
     >
       EPIC VOTE
-    </Button></div>
+    </Button>
+  </div>
   );
 };
 

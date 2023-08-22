@@ -118,16 +118,16 @@ const VotersTable = ({ votes, addUserToList, resetUserVotes }) => {
                 </TableRow>
               );
             })}
-            {visible && (
-              <TableRow>
-                <TableCell />
-                <TableCell />
-                <TableCell />
-                <TableCell align="center">
-                  <VotesScore votes={votes} />
-                </TableCell>
-              </TableRow>
-            )}
+
+            <TableRow>
+              <TableCell />
+              <TableCell />
+              <TableCell />
+              <TableCell align="center">
+                {visible && (<VotesScore votes={votes} />)}
+              </TableCell>
+            </TableRow>
+
           </TableBody>
         </Table>
       </TableContainer>
