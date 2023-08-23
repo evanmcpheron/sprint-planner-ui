@@ -27,6 +27,10 @@ const VotersTable = ({ votes, addUserToList, resetUserVotes }) => {
   const isAdmin = searchParams.get("admin");
   const socket = useContext(SocketContext);
 
+  const visibleUsers = () => {
+    return votes.filter(user => user.room === roomId);
+  }
+
   const handlePointVisibility = () => {
     socket.emit("change-point-visibility", !visible);
   };
@@ -97,7 +101,7 @@ const VotersTable = ({ votes, addUserToList, resetUserVotes }) => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {votes.map((user, idx) => {
+            {visibleUsers().map((user, idx) => {
               return (
                 <TableRow
                   key={idx}

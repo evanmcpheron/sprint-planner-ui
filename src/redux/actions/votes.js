@@ -11,6 +11,7 @@ const {
 } = types;
 
 export const addUserToList = (user) => (dispatch) => {
+
   dispatch({
     type: ADD_USER_TO_LIST,
     payload: user,
