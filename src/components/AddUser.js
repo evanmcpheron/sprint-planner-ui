@@ -29,8 +29,8 @@ const AddUser = ({ enterRoom, addUser }) => {
   }, []);
 
   const handleSubmit = useCallback(() => {
-    localStorage.setItem("currentUser", JSON.stringify({ name, id, roomId }));
-    addUser(name, id);
+    localStorage.setItem("currentUser", JSON.stringify({ name, id }));
+    addUser(name, id, roomId);
     return navigate(`/${id}/${roomId}`);
   }, [name]);
 

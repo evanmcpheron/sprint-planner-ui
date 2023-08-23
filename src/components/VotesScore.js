@@ -1,10 +1,9 @@
 import { countVotes } from "../services/countVotes";
 import { Box } from "@mui/material";
 
-const VotesScore = ({ votes }) => {
-  const score = countVotes(votes);
-
-  return <Box>{score > 1 ? `${score} Points` : `${score} Point`}</Box>;
+const VotesScore = ({ votes, roomId, visible }) => {
+  const score = countVotes(votes, roomId);
+  return <Box>{visible ? score : "--"} Points</Box>;
 };
 
 export default VotesScore;

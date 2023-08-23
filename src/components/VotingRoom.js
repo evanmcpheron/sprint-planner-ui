@@ -41,7 +41,7 @@ const VotingRoom = ({ updateVotes, addUserToList, user }) => {
       variant={"contained"}
       sx={{ margin: '10px' }}
       size="large"
-      color={"primary"}
+      color={"warning"}
       onClick={() => {
         updateVotes({ category: "Uncertainty", value: "EPIC", id });
         updateVotes({ category: "Complexity", value: "EPIC", id });

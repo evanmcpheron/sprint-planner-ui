@@ -128,7 +128,7 @@ const VotersTable = ({ votes, addUserToList, resetUserVotes }) => {
               <TableCell />
               <TableCell />
               <TableCell align="center">
-                {visible && (<VotesScore votes={votes} />)}
+                <VotesScore votes={votes} roomId={roomId} visible={visible} />
               </TableCell>
             </TableRow>
 

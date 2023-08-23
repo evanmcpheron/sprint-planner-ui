@@ -1,11 +1,21 @@
 import { Button, TableCell, TableRow } from "@mui/material";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
+import { useContext, useState, useEffect } from "react";
+import { SocketContext } from "../context/socket";
 
 const VotingRow = ({ vote, updateVotes, user }) => {
+  const socket = useContext(SocketContext);
+  const [visible, setVisible] = useState(false);
   const id = user.id;
-  return (
 
+  useEffect(() => {
+    socket.on("change-point-visibility", (visibility) => {
+      setVisible(visibility);
+    });
+  }, [visible]);
+
+  return (
     <TableRow>
       <TableCell component="th" scope="row">
         {vote.category}
@@ -13,8 +23,9 @@ const VotingRow = ({ vote, updateVotes, user }) => {
       <TableCell align="right">
         <Button
           className={"vote-button"}
-          variant={vote.value === "N/A" ? "contained" : "text"}
+          variant={vote.value === "N/A" || vote.value === "EPIC" ? "contained" : "text"}
           size="large"
+          disabled={visible}
           color={"primary"}
           onClick={() =>
             updateVotes({ category: vote.category, value: "N/A", id })
@@ -28,6 +39,7 @@ const VotingRow = ({ vote, updateVotes, user }) => {
           className={"vote-button "}
           variant={vote.value === "LOW" ? "contained" : "text"}
           size="large"
+          disabled={visible}
           color={"primary"}
           onClick={() =>
             updateVotes({ category: vote.category, value: "LOW", id })
@@ -41,6 +53,7 @@ const VotingRow = ({ vote, updateVotes, user }) => {
           className={"vote-button "}
           variant={vote.value === "MEDIUM" ? "contained" : "text"}
           size="large"
+          disabled={visible}
           color={"primary"}
           onClick={() =>
             updateVotes({ category: vote.category, value: "MEDIUM", id })
@@ -54,6 +67,7 @@ const VotingRow = ({ vote, updateVotes, user }) => {
           className={"vote-button "}
           variant={vote.value === "HIGH" ? "contained" : "text"}
           size="large"
+          disabled={visible}
           color={"primary"}
           onClick={() =>
             updateVotes({ category: vote.category, value: "HIGH", id })
@@ -62,19 +76,7 @@ const VotingRow = ({ vote, updateVotes, user }) => {
           HIGH
         </Button>
       </TableCell>
-      <TableCell align="right">
-        <Button
-          className={"vote-button "}
-          variant={vote.value === "EPIC" ? "contained" : "text"}
-          size="large"
-          color={"primary"}
-          onClick={() =>
-            updateVotes({ category: vote.category, value: "EPIC", id })
-          }
-        >
-          EPIC
-        </Button>
-      </TableCell>
+
     </TableRow>
   );
 };
