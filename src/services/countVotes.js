@@ -1,8 +1,11 @@
 export const countVotes = (users) => {
+  const currentRoom = JSON.parse(localStorage.getItem("currentUser")).roomId;
   const currentVotes = [];
   for (const user of users) {
-    for (const vote of user.votes) {
-      currentVotes.push(vote.value);
+    if (user.room === currentRoom) {
+      for (const vote of user.votes) {
+        currentVotes.push(vote.value);
+      }
     }
   }
   let sum = 0;
