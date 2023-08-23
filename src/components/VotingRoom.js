@@ -12,7 +12,7 @@ const VotingRoom = ({ updateVotes, addUserToList, user }) => {
   const id = user.id;
   useEffect(() => {
     if (user.name) {
-      socket.emit("new-vote", { ...user, votes: user.votes, id: user.id });
+      socket.emit("new-vote", { ...user, votes: user.votes, id: user.id }, user.room);
       socket.on("new-vote", (vote) => {
         addUserToList(vote);
       });

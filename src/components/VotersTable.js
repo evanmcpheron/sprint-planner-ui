@@ -32,12 +32,12 @@ const VotersTable = ({ votes, addUserToList, resetUserVotes }) => {
   }
 
   const handlePointVisibility = () => {
-    socket.emit("change-point-visibility", !visible);
+    socket.emit("change-point-visibility", !visible, roomId);
   };
 
   const handleResetScores = () => {
-    socket.emit("reset-scores");
-    socket.emit("change-point-visibility", false);
+    socket.emit("reset-scores", roomId);
+    socket.emit("change-point-visibility", false, roomId);
   };
 
   useEffect(() => {
