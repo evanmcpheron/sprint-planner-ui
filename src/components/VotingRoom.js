@@ -51,6 +51,21 @@ const VotingRoom = ({ updateVotes, addUserToList, user }) => {
     >
       EPIC VOTE
     </Button>
+    <Button
+      className={"vote-button"}
+      variant={"contained"}
+      sx={{ margin: '10px' }}
+      size="large"
+      color={"success"}
+      onClick={() => {
+        updateVotes({ category: "Uncertainty", value: "NOT VOTING", id });
+        updateVotes({ category: "Complexity", value: "NOT VOTING", id });
+        updateVotes({ category: "Effort", value: "NOT VOTING", id });
+      }
+      }
+    >
+      NOT VOTING
+    </Button>
   </div>
   );
 };

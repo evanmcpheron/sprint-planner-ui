@@ -1,4 +1,4 @@
-export const countVotes = (users, currentRoom) => {
+export const countVotes = (users, currentRoom, isSingleUser = false) => {
   const currentVotes = [];
   for (const user of users) {
     if (user.room === currentRoom) {
@@ -7,8 +7,15 @@ export const countVotes = (users, currentRoom) => {
       }
     }
   }
+  if (isSingleUser) {
+    for (const vote of users) {
+      currentVotes.push(vote.value);
+    }
+  }
+
   let sum = 0;
   let voteCount = 0;
+
   for (const value of currentVotes) {
     if (value === "N/A") {
     } else if (value === "LOW") {

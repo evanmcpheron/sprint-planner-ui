@@ -23,7 +23,7 @@ const VotingRow = ({ vote, updateVotes, user }) => {
       <TableCell align="right">
         <Button
           className={"vote-button"}
-          variant={vote.value === "N/A" || vote.value === "EPIC" ? "contained" : "text"}
+          variant={vote.value === "N/A" || vote.value === "EPIC" || vote.value === "NOT VOTING" ? "contained" : "text"}
           size="large"
           disabled={visible}
           color={"primary"}

@@ -1,5 +1,6 @@
 import * as React from "react";
 import {
+  Box,
   Table,
   TableBody,
   TableCell,
@@ -15,6 +16,7 @@ import { Check, Close } from "@mui/icons-material";
 import { useParams, useSearchParams } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
+import { countVotes } from "../services/countVotes";
 import { addUserToList } from "../redux/actions/votes";
 import VotesScore from "./VotesScore";
 import { SocketContext } from "../context/socket";
@@ -63,6 +65,8 @@ const VotersTable = ({ votes, addUserToList, resetUserVotes }) => {
           return <Typography sx={{ color: "red" }}>HIGH</Typography>;
         case "EPIC":
           return <Typography className="epic">EPIC</Typography>;
+        case "NOT VOTING":
+          return <Typography sx={{ color: "cyan" }}>NOT VOTING</Typography>;
         default:
           return;
       }
@@ -98,10 +102,13 @@ const VotersTable = ({ votes, addUserToList, resetUserVotes }) => {
               <TableCell align="center">Uncertainty</TableCell>
               <TableCell align="center">Complexity</TableCell>
               <TableCell align="center">Effort</TableCell>
+              <TableCell align="center">Points</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
             {visibleUsers().map((user, idx) => {
+              const score = countVotes(user.votes, roomId, true);
+
               return (
                 <TableRow
                   key={idx}
@@ -119,11 +126,15 @@ const VotersTable = ({ votes, addUserToList, resetUserVotes }) => {
                   <TableCell align="center">
                     {parseData(user.votes[2].value)}
                   </TableCell>
+                  <TableCell align="center">
+                    <Box>{visible ? score : "--"} Points</Box>
+                  </TableCell>
                 </TableRow>
               );
             })}
 
             <TableRow>
+              <TableCell />
               <TableCell />
               <TableCell />
               <TableCell />
