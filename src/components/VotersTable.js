@@ -13,7 +13,7 @@ import {
 } from "@mui/material";
 import { useState, useContext, useEffect } from "react";
 import { Check, Close } from "@mui/icons-material";
-import { useParams, useSearchParams } from "react-router-dom";
+import { Link, useParams, useSearchParams } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { countVotes } from "../services/countVotes";
@@ -72,6 +72,7 @@ const VotersTable = ({ votes, addUserToList, resetUserVotes }) => {
       }
     }
 
+
     return (
       <>
         {data === "N/A" ? (
@@ -82,6 +83,25 @@ const VotersTable = ({ votes, addUserToList, resetUserVotes }) => {
       </>
     );
   };
+
+  const parseScoreToTime = (score) => {
+    switch (score) {
+      case 1:
+        return "A couple hours"
+      case 2:
+        return "One full day"
+      case 3:
+        return "A couple days"
+      case 5:
+        return "One full week"
+      case 8:
+        return "Two weeks"
+      case 13:
+        return "More than 2 weeks"
+      default:
+        return "--";
+    }
+  }
 
   return (
     <div className={"voters-table-container"}>
@@ -137,7 +157,8 @@ const VotersTable = ({ votes, addUserToList, resetUserVotes }) => {
               <TableCell />
               <TableCell />
               <TableCell />
-              <TableCell />
+              <TableCell >
+                <Box>{visible ? parseScoreToTime(countVotes(votes, roomId)) : "-- Time"}</Box></TableCell>
               <TableCell align="center">
                 <VotesScore votes={votes} roomId={roomId} visible={visible} />
               </TableCell>
@@ -146,7 +167,7 @@ const VotersTable = ({ votes, addUserToList, resetUserVotes }) => {
           </TableBody>
         </Table>
       </TableContainer>
-      {isAdmin && (
+      {isAdmin ? (
         <div className={"admin-buttons-container"}>
           <Button
             variant={"contained"}
@@ -162,7 +183,10 @@ const VotersTable = ({ votes, addUserToList, resetUserVotes }) => {
           </Button>
 
         </div>
-      )}
+      ) : <div className={"admin-buttons-container"}><Button variant={"contained"}
+        style={{ marginRight: "10px" }}
+        href={`${window.location.href}?admin=true`}>
+        Become Admin</Button></div>}
     </div>
   );
 };
